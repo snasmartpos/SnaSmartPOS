@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNA SmartPOS - Modern POS & Inventory Management System</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent-color: #10b981;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #374151;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navbar Styling */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 8%;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 12rem 8% 6rem 8%;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .cta-btn {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Screenshot Container Showcase */
+        .screenshot-showcase {
+            margin-top: 4rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .window-header {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #374151;
+        }
+
+        .dot.red { background: #ef4444; }
+        .dot.yellow { background: #f59e0b; }
+        .dot.green { background: #10b981; }
+
+        .main-screenshot {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #1f2937;
+            display: block;
+            background-color: #1f2937; /* Fallback color */
+            min-height: 400px;
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 6rem 8%;
+            background: rgba(17, 24, 39, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .icon-box {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Gallery/Screenshots Section */
+        .gallery {
+            padding: 6rem 8%;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.8rem;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            background: #1f2937;
+            min-height: 220px;
+        }
+
+        .gallery-item p {
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 8%;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Breakpoint */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links a { display: none; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <nav>
+        <div class="logo"><i data-lucide="layout-dashboard"></i> SNA <span>SmartPOS</span></div>
+        <div class="nav-links">
+            <a href="#features" data-en="Features" data-si="විශේෂාංග">Features</a>
+            <a href="#screenshots" data-en="Screenshots" data-si="ඡායාරූප">Screenshots</a>
+            <button class="lang-btn" onclick="toggleLanguage()">
+                <i data-lucide="languages"></i><span id="lang-label">සිංහල</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <!-- Hero Section with Live Download Buttons -->
+    <header class="hero">
+        <div class="badge" data-en="Next-Generation Retail Technology" data-si="නව පරපුරේ සිල්ලර වෙළඳ තාක්ෂණය">Next-Generation Retail Technology</div>
+        <h1 id="hero-title">Manage Your Entire Business with <span>SNA SmartPOS</span></h1>
+        <p id="hero-desc">Fast invoicing, dynamic import landing cost calculation, batch-wise inventory tracking, and real-time profit analysis in one powerful local-first platform.</p>
+        
+        <!-- Action Buttons Layout -->
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;">
+            <!-- DOWNLOAD BUTTON: Pointing to your system package -->
+            <a href="downloads/sna-smartpos.zip" download class="cta-btn" id="download-btn" style="background: var(--accent-color); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);">
+                <i data-lucide="download"></i> <span data-en="Download SmartPOS" data-si="පද්ධතිය බාගත කරගන්න (නොමිලේ)">Download SmartPOS</span>
+            </a>
+            
+            <a href="#screenshots" class="cta-btn" id="hero-btn">
+                <span data-en="View Screenshots" data-si="ඡායාරූප බලන්න">View Screenshots</span> <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- Main Dashboard Image Placeholder -->
+        <div class="screenshot-showcase">
+            <div class="window-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <img src="dashboard.png" alt="SNA SmartPOS Main Dashboard Interface" class="main-screenshot">
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title" data-en="Core System Superpowers" data-si="පද්ධතියේ ප්‍රධාන විශේෂාංග">Core System Superpowers</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="icon-box"><i data-lucide="zap"></i></div>
+                <h3 data-en="Lightning-Fast Invoicing" data-si="ක්ෂණික බිල්පත් නිකුත් කිරීම">Lightning-Fast Invoicing</h3>
+                <p data-en="Generate retail and wholesale invoices instantly. Complete support for barcode scanning and swift thermal receipt printing." data-si="සිල්ලර හා තොග බිල්පත් ක්ෂණිකව සාදන්න. බාර්කෝඩ් ස්කෑන් කිරීම සහ තාප මුද්‍රණ යන්ත්‍ර පහසුවෙන් සම්බන්ධ කිරීමේ හැකියාව.">Generate retail and wholesale invoices instantly. Complete support for barcode scanning and swift thermal receipt printing.</p>
+            </div>
+            <div class="card">
+                <div class="icon-box"><i data-lucide="ship"></i></div>
+                <h3 data-en="Import & Cost Calculation" data-si="ආනයන සහ පිරිවැය ගණනය කිරීම">Import & Cost Calculation</h3>
+                <p data-en="Automatically distribute bulk shipping, duty, and freight expenses across products based on weight or value proportions." data-si="තොග පිටින් භාණ්ඩ ආනයනය කිරීමේදී නැව් ගාස්තු, තීරුබදු සහ අනෙකුත් වියදම් එක් එක් භාණ්ඩයේ බර හෝ වටිනාකම අනුව නිවැරදිව බෙදා පිරිවැය සොයන්න.">Automatically distribute bulk shipping, duty, and freight expenses across products based on weight or value proportions.</p>
+            </div>
+            <div class="card">
+                <div class="icon-box"><i data-lucide="boxes"></i></div>
+                <h3 data-en="Smart Inventory Control" data-si="ස්මාර්ට් තොග පාලනය">Smart Inventory Control</h3>
+                <p data-en="Keep track of batch updates, suppliers, stock items, and automated low-stock warnings to never run out of inventory." data-si="භාණ්ඩ කාණ්ඩ (Batches), සැපයුම්කරුවන් සහ තොග මට්ටම් නිවැරදිව නිරීක්ෂණය කරන්න. තොග අඩුවන විට ස්වයංක්‍රීයව දැනුම් දේ.">Keep track of batch updates, suppliers, stock items, and automated low-stock warnings to never run out of inventory.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery / Screenshots Section -->
+    <section class="gallery" id="screenshots">
+        <h2 class="section-title" data-en="System Screenshots Preview" data-si="පද්ධතියේ ඡායාරූප එකතුව">System Screenshots Preview</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <!-- EDIT HERE: Replace 'inventory.png' with your stock management page screenshot -->
+                <img src="inventory.png" alt="SNA SmartPOS Inventory Module">
+                <p data-en="Inventory & Batch Costing Management" data-si="තොග සහ පිරිවැය කළමනාකරණය">Inventory & Batch Costing Management</p>
+            </div>
+            <div class="gallery-item">
+                <!-- EDIT HERE: Replace 'reports.png' with your sales/reports page screenshot -->
+                <img src="reports.png" alt="SNA SmartPOS Analytics Dashboard">
+                <p data-en="Real-time Analytics & Profit/Loss Reports" data-si="ලාභ හා අලාභ වාර්තාකරණය">Real-time Analytics & Profit/Loss Reports</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 SNA SmartPOS. All Rights Reserved. Engineered for local-first reliability.</p>
+    </footer>
+
+    <!-- Dual Language Toggle Engine Script -->
+    <script>
+        // Initialize Lucide vector icons
+        lucide.createIcons();
+
+        let currentLang = 'en';
+
+        const content = {
+            en: {
+                heroTitle: "Manage Your Entire Business with <span>SNA SmartPOS</span>",
+                heroDesc: "Fast invoicing, dynamic import landing cost calculation, batch-wise inventory tracking, and real-time profit analysis in one powerful local-first platform.",
+                langLabel: "සිංහල"
+            },
+            si: {
+                heroTitle: "ඔබේ සම්පූර්ණ ව්‍යාපාරයම <span>SNA SmartPOS</span> මඟින් පාලනය කරන්න",
+                heroDesc: "වේගවත් බිල්පත්කරණය, ආනයන වියදම් (Landing Cost) ස්වයංක්‍රීයව ගණනය කිරීම, තොග කාණ්ඩ අනුව නිරීක්ෂණය සහ නිවැරදි ලාභ අලාභ වාර්තා සියල්ල එකම පද්ධතියකින්.",
+                langLabel: "English"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'si' : 'en';
+            
+            // Toggle Main Titles
+            document.getElementById('hero-title').innerHTML = content[currentLang].heroTitle;
+            document.getElementById('hero-desc').textContent = content[currentLang].heroDesc;
+            document.getElementById('lang-label').textContent = content[currentLang].langLabel;
+
+            // Toggle element-level text variables
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+        }
+    </script>
+</body>
+</html>

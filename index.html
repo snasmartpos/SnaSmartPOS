@@ -37,7 +37,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 8%;
+            padding: 1rem 8%;
             background: rgba(11, 15, 25, 0.8);
             backdrop-filter: blur(12px);
             position: fixed;
@@ -53,7 +53,14 @@
             color: #fff;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+        }
+
+        .brand-logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 6px;
+            display: block;
         }
 
         .logo span {
@@ -199,13 +206,16 @@
             border-radius: 8px;
             border: 1px solid #1f2937;
             display: block;
-            background-color: #1f2937; /* Fallback color */
+            background-color: #1f2937;
             min-height: 400px;
         }
 
-        /* Features Grid */
-        .features {
+        /* Sections General styling */
+        .section-padding {
             padding: 6rem 8%;
+        }
+
+        .features {
             background: rgba(17, 24, 39, 0.5);
         }
 
@@ -259,7 +269,6 @@
 
         /* Gallery/Screenshots Section */
         .gallery {
-            padding: 6rem 8%;
             text-align: center;
         }
 
@@ -293,6 +302,77 @@
             color: var(--text-main);
         }
 
+        /* Pricing & Payments Styles */
+        .payments {
+            background: rgba(17, 24, 39, 0.3);
+        }
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 1rem 0;
+        }
+        .price-tag span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .payment-methods {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .payment-methods h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #fff;
+        }
+        .bank-details {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: left;
+            margin-top: 0.5rem;
+            border: 1px dashed var(--border-color);
+        }
+
+        /* Contact Section Styles */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .contact-card .icon-box {
+            margin-bottom: 0;
+            flex-shrink: 0;
+        }
+        .contact-card div {
+            text-align: left;
+        }
+        .contact-card h4 {
+            font-size: 1rem;
+            color: #fff;
+        }
+        .contact-card p a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .contact-card p a:hover {
+            text-decoration: underline;
+        }
+
         /* Footer */
         footer {
             padding: 4rem 8%;
@@ -314,10 +394,15 @@
 
     <!-- Navigation Header -->
     <nav>
-        <div class="logo"><i data-lucide="layout-dashboard"></i> SNA <span>SmartPOS</span></div>
+        <div class="logo">
+            <img src="sna logo.jpg" alt="SNA" class="brand-logo-img">
+            SNA <span>SmartPOS</span>
+        </div>
         <div class="nav-links">
             <a href="#features" data-en="Features" data-si="විශේෂාංග">Features</a>
             <a href="#screenshots" data-en="Screenshots" data-si="ඡායාරූප">Screenshots</a>
+            <a href="#pricing" data-en="Pricing & Payments" data-si="මිල ගණන් සහ ගෙවීම්">Pricing</a>
+            <a href="#contact" data-en="Contact" data-si="සම්බන්ධ වීමට">Contact</a>
             <button class="lang-btn" onclick="toggleLanguage()">
                 <i data-lucide="languages"></i><span id="lang-label">සිංහල</span>
             </button>
@@ -325,21 +410,26 @@
     </nav>
 
     <!-- Hero Section -->
-    <!-- Hero Section with Live Download Buttons -->
     <header class="hero">
         <div class="badge" data-en="Next-Generation Retail Technology" data-si="නව පරපුරේ සිල්ලර වෙළඳ තාක්ෂණය">Next-Generation Retail Technology</div>
         <h1 id="hero-title">Manage Your Entire Business with <span>SNA SmartPOS</span></h1>
         <p id="hero-desc">Fast invoicing, dynamic import landing cost calculation, batch-wise inventory tracking, and real-time profit analysis in one powerful local-first platform.</p>
         
-        <!-- Action Buttons Layout -->
+       <!-- Action Buttons Layout -->
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;">
-            <!-- DOWNLOAD BUTTON: Pointing to your system package -->
-            <a href="downloads/sna-smartpos.zip" download class="cta-btn" id="download-btn" style="background: var(--accent-color); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);">
-                <i data-lucide="download"></i> <span data-en="Download SmartPOS" data-si="පද්ධතිය බාගත කරගන්න (නොමිලේ)">Download SmartPOS</span>
+            <!-- GOOGLE DRIVE LINK -->
+            <a href="https://drive.google.com/file/d/19DQWs-w9WK4wQ8uR7kmimdCwebRrLxrO/view?usp=drive_link" target="_blank" class="cta-btn" id="download-btn" style="background: var(--accent-color); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);">
+                <i data-lucide="download"></i> 
+                <span data-en="Download and try for 7 days for free" data-si="බාගත කර දින 7ක් නොමිලේ අත්හදා බලන්න">Download and try for 7 days for free</span>
             </a>
             
-            <a href="#screenshots" class="cta-btn" id="hero-btn">
-                <span data-en="View Screenshots" data-si="ඡායාරූප බලන්න">View Screenshots</span> <i data-lucide="arrow-right"></i>
+            <!-- YOUTUBE TUTORIAL BUTTON -->
+            <a href="https://youtube.com/@snasmartposofficial?si=RO8UhVMmgDPTuyPX" target="_blank" class="cta-btn" style="background: #ff0000; box-shadow: 0 4px 14px rgba(255, 0, 0, 0.4);">
+                <i data-lucide="youtube"></i> <span data-en="Watch Tutorial Video" data-si="වීඩියෝ උපදෙස් මාලාව බලන්න">Watch Tutorial Video</span>
+            </a>
+
+            <a href="#pricing" class="cta-btn" id="hero-btn">
+                <span data-en="Get Full Version" data-si="මිලදී ගැනීම්">Get Full Version</span> <i data-lucide="arrow-right"></i>
             </a>
         </div>
 
@@ -355,7 +445,7 @@
     </header>
 
     <!-- Features Section -->
-    <section class="features" id="features">
+    <section class="section-padding features" id="features">
         <h2 class="section-title" data-en="Core System Superpowers" data-si="පද්ධතියේ ප්‍රධාන විශේෂාංග">Core System Superpowers</h2>
         <div class="grid">
             <div class="card">
@@ -377,18 +467,73 @@
     </section>
 
     <!-- Gallery / Screenshots Section -->
-    <section class="gallery" id="screenshots">
+    <section class="section-padding gallery" id="screenshots">
         <h2 class="section-title" data-en="System Screenshots Preview" data-si="පද්ධතියේ ඡායාරූප එකතුව">System Screenshots Preview</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <!-- EDIT HERE: Replace 'inventory.png' with your stock management page screenshot -->
                 <img src="inventory.png" alt="SNA SmartPOS Inventory Module">
                 <p data-en="Inventory & Batch Costing Management" data-si="තොග සහ පිරිවැය කළමනාකරණය">Inventory & Batch Costing Management</p>
             </div>
             <div class="gallery-item">
-                <!-- EDIT HERE: Replace 'reports.png' with your sales/reports page screenshot -->
                 <img src="reports.png" alt="SNA SmartPOS Analytics Dashboard">
                 <p data-en="Real-time Analytics & Profit/Loss Reports" data-si="ලාභ හා අලාභ වාර්තාකරණය">Real-time Analytics & Profit/Loss Reports</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Payments Section -->
+    <section class="section-padding payments" id="pricing">
+        <h2 class="section-title" data-en="Pricing & Activation" data-si="මිල ගණන් සහ සක්‍රිය කිරීම්">Pricing & Activation</h2>
+        <div class="grid" style="max-width: 600px; margin: 0 auto;">
+            <div class="card" style="text-align: center; border-color: var(--accent-color);">
+                <div class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-color); border-color: rgba(16, 185, 129, 0.2);" data-en="Lifetime License" data-si="ජීවිත කාලයටම">Lifetime License</div>
+                <h3 data-en="SNA SmartPOS Pro" data-si="SNA SmartPOS ප්‍රෝ">SNA SmartPOS Pro</h3>
+                <div class="price-tag">
+                    <del style="color: var(--text-muted); font-size: 1.8rem;">LKR 15,000</del> 
+                    LKR 5,000 
+                    <span style="font-size: 1.1rem; color: #ef4444; font-weight: 700; display: inline-block; margin-left: 0.5rem;" data-en="(Limited Time Offer)" data-si="(සීමිත කාලයක් පමණි)">(Limited Time Offer)</span>
+                    <span style="display: block; margin-top: -0.5rem;">/ One-time</span>
+                </div>
+                <p data-en="Get access to full premium features including custom business profiles, printable receipts, and automated reports with no monthly fees." data-si="මාසික ගාස්තු නොමැත. සියලුම විශේෂාංග, රිසිට්පත් මුද්‍රණය සහ ව්‍යාපාරික වාර්තා ඇතුළු සම්පූර්ණ පද්ධතියම ජීවිත කාලයටම සක්‍රීය කර දෙනු ලැබේ.">Get access to full premium features including custom business profiles, printable receipts, and automated reports with no monthly fees.</p>
+                
+                <div class="payment-methods">
+                    <h4 data-en="Bank Transfer Payments" data-si="බැංකු තැන්පතු තොරතුරු">Bank Transfer Payments</h4>
+                    <p style="font-size: 0.85rem;" data-en="Please deposit the activation fee to the account below and send a snapshot of your receipt via WhatsApp." data-si="කරුණාකර පහත බැංකු ගිණුමට මුදල් තැන්පත් කර රිසිට්පත අපගේ WhatsApp අංකයට යොමු කරන්න.">Please deposit the activation fee to the account below and send a snapshot of your receipt via WhatsApp.</p>
+                    <div class="bank-details">
+                        <strong>Bank:</strong> BOC<br>
+                        <strong>Account Name:</strong> K.A.A.Iroshan Perera<br>
+                        <strong>Account Number:</strong> 96090616 <br>
+                        <strong>Branch:</strong> Kadawatha 2nd City Branch
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Details Section -->
+    <section class="section-padding" id="contact" style="background: rgba(11, 15, 25, 0.6);">
+        <h2 class="section-title" data-en="Need Support or Activation?" data-si="සහයෝගය සහ විමසීම්">Need Support or Activation?</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="icon-box"><i data-lucide="phone"></i></div>
+                <div>
+                    <h4 data-en="Call Us" data-si="දුරකථන අංකය">Call Us</h4>
+                    <p><a href="tel:+94 75 229 7028">+94 75 229 7028</a></p>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="icon-box" style="color: #25d366; background: rgba(37, 211, 102, 0.1);"><i data-lucide="message-square"></i></div>
+                <div>
+                    <h4 data-en="WhatsApp" data-si="වට්ස්ඇප්">WhatsApp</h4>
+                    <p><a href="https://wa.me/+94752297028" target="_blank">Send Message</a></p>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="icon-box"><i data-lucide="mail"></i></div>
+                <div>
+                    <h4 data-en="Email Support" data-si="ඊමේල්">Email Support</h4>
+                    <p><a href="mailto:snasmartpos@gmail.com">snasmartpos@gmail.com</a></p>
+                </div>
             </div>
         </div>
     </section>
@@ -400,7 +545,6 @@
 
     <!-- Dual Language Toggle Engine Script -->
     <script>
-        // Initialize Lucide vector icons
         lucide.createIcons();
 
         let currentLang = 'en';
@@ -421,12 +565,10 @@
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'si' : 'en';
             
-            // Toggle Main Titles
             document.getElementById('hero-title').innerHTML = content[currentLang].heroTitle;
             document.getElementById('hero-desc').textContent = content[currentLang].heroDesc;
             document.getElementById('lang-label').textContent = content[currentLang].langLabel;
 
-            // Toggle element-level text variables
             document.querySelectorAll('[data-en]').forEach(el => {
                 el.textContent = el.getAttribute(`data-${currentLang}`);
             });
